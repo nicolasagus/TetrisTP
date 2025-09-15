@@ -1,15 +1,34 @@
 {
     "cSpell.words": [
+        "Abajo",
+        "Arriba",
+        "cada",
         "Colicionado",
+        "coliciono",
+        "columnas",
+        "Derecha",
         "ENCAPSULACIÓN",
+        "ENCAPSULAMIENTO",
         "estado",
+        "filas",
+        "imprimir",
+        "Izquierda",
+        "Limite",
+        "limpiar",
+        "Matriz",
+        "mirando",
         "mycompany",
+        "Obtener",
         "Pieza",
         "Rotacion",
         "Rotaciones",
         "Rotador",
+        "rotar",
+        "Tablero",
         "variacion",
         "Variacion",
         "Variaciones"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.debug.settings.onBuildFailureProceed": true
 }

@@ -1,4 +1,4 @@
-package com.tetris.interfaces;
+package com.tetris.Interfaces;
 
 public interface IGiro {
     public boolean mirandoDerecha();
