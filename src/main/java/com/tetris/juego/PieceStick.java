@@ -17,13 +17,14 @@ public class PieceStick extends BasePiece{
 
     public PieceStick() {
         super();
-        setMaxRotaciones(1);
+        Math.random();
+        setMaxRotaciones(2);
         setRotacion((int) (Math.random() * this.getMaxRotaciones()));
     }
 
     public PieceStick(int rotacion) {
         super();
-        setMaxRotaciones(1);
+        setMaxRotaciones(2);
         setRotacion(rotacion);
     }
 

@@ -10,10 +10,8 @@ public abstract class BasePiece implements IRotador, IObtenerMatrizPieza, IGiro{
     protected boolean haColisionado;
 
     public BasePiece() {
-        this.rotacionActual = 0;
-        this.haColisionado = false;
-        this.variacionActual = 0;
-        this.variacionesMaximas = 0;
+        super();
+        setHaColisionado(false);
     }
 
     //ACA HAY ENCAPSULAMIENTO
@@ -25,8 +23,13 @@ public abstract class BasePiece implements IRotador, IObtenerMatrizPieza, IGiro{
         return rotacionActual;
     }
 
+    @Override
+    public String[] getMatriz(){
+        return null;
+    } // se define por pieza
+
     protected void setMaxRotaciones(int maxRotaciones){
-        this.rotacionesMaximas = maxRotaciones;
+        this.rotacionesMaximas = maxRotaciones - 1;
     }
 
     public int getMaxRotaciones(){
@@ -56,6 +59,7 @@ public abstract class BasePiece implements IRotador, IObtenerMatrizPieza, IGiro{
     public int getMaxVariaciones(){
         return variacionesMaximas;
     }
+    // ACA TERMINA
 
     public void rotarIzquierda(){
         rotacionActual = (rotacionActual - 1 + (rotacionesMaximas + 1)) % (rotacionesMaximas + 1);
@@ -66,9 +70,6 @@ public abstract class BasePiece implements IRotador, IObtenerMatrizPieza, IGiro{
     }
 
     public void colision() {
-        this.haColisionado = true;
+        setHaColisionado(true);;
     }
-
-    @Override
-    public abstract String[] getMatriz();
 }

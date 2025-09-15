@@ -33,7 +33,8 @@ public class PieceDog extends BasePiece{
 
     public PieceDog() {
         super();
-        setMaxRotaciones(1);
+        Math.random();
+        setMaxRotaciones(2);
         setMaxVariaciones(1);
         setRotacion((int)(Math.random() * this.getMaxRotaciones()));
         setVariacion((int)(Math.random() * this.getMaxVariaciones()));
@@ -41,7 +42,7 @@ public class PieceDog extends BasePiece{
 
     public PieceDog(int rotacion, int variacion){
         super();
-        setMaxRotaciones(1);
+        setMaxRotaciones(2);
         setMaxVariaciones(1);
         setRotacion(rotacion);
         setVariacion(variacion);

@@ -30,13 +30,14 @@ public class PieceT extends BasePiece{
 
     public PieceT() {
         super();
-        setMaxRotaciones(3);
+        Math.random();
+        setMaxRotaciones(4);
         setRotacion((int)(Math.random() * this.getMaxRotaciones()));
     }
 
-    public PieceT(int rotacion) {
+    public PieceT(int rotacion, int variacion) {
         super();
-        setMaxRotaciones(3);
+        setMaxRotaciones(4);
         setRotacion(rotacion);
     }
 

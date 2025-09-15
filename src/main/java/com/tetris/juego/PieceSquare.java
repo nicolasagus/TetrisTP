@@ -10,6 +10,8 @@ public class PieceSquare extends BasePiece {
 
     public PieceSquare() {
         super();
+        Math.random();
+        setRotacion((int)(Math.random() * this.getMaxRotaciones()));
     }
 
     public PieceSquare(int rotacion, int variacion) {
