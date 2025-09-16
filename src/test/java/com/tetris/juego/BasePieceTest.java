@@ -8,6 +8,17 @@ public class BasePieceTest {
     public void test_Pieza_Square() {
         BasePiece Z = new PieceSquare();
 
+        Z.rotateRight();
+        assertTrue(Z.mirandoIzquierda());
+        assertTrue(Z.mirandoDerecha());
+        assertTrue(Z.mirandoArriba());
+        assertTrue(Z.mirandoAbajo());
+        Z.rotateRight();
+        assertTrue(Z.mirandoIzquierda());
+        assertTrue(Z.mirandoDerecha());
+        assertTrue(Z.mirandoArriba());
+        assertTrue(Z.mirandoAbajo());
+        Z.rotateLeft();
         assertTrue(Z.mirandoIzquierda());
         assertTrue(Z.mirandoDerecha());
         assertTrue(Z.mirandoArriba());
@@ -16,23 +27,21 @@ public class BasePieceTest {
 
     @Test
     public void test_Pieza_Stick() {
-        for (int rot = 0; rot < 2; rot++) {
-            BasePiece S = new PieceStick(rot);
+        BasePiece S = new PieceStick(0);
 
-            switch(S.getRotacion()) {
-                case 0:
-                    assertTrue(S.mirandoIzquierda());
-                    assertTrue(S.mirandoDerecha());
-                    assertFalse(S.mirandoArriba());
-                    assertFalse(S.mirandoAbajo());
-                    break;
-                case 1:
-                    assertFalse(S.mirandoIzquierda());
-                    assertFalse(S.mirandoDerecha());
-                    assertTrue(S.mirandoArriba());
-                    assertTrue(S.mirandoAbajo());
-                    break;
-            }
+        switch(S.getRotacion()) {
+            case 0:
+                assertTrue(S.mirandoIzquierda());
+                assertTrue(S.mirandoDerecha());
+                assertFalse(S.mirandoArriba());
+                assertFalse(S.mirandoAbajo());
+                break;
+            case 1:
+                assertFalse(S.mirandoIzquierda());
+                assertFalse(S.mirandoDerecha());
+                assertTrue(S.mirandoArriba());
+                assertTrue(S.mirandoAbajo());
+                break;
         }
     }
 
@@ -76,12 +85,12 @@ public class BasePieceTest {
 
             for(int i = 0; i < D.getMaxRotaciones(); i++){
                 assertTrue(D.mirandoArriba() || D.mirandoAbajo() || D.mirandoIzquierda() || D.mirandoDerecha());
-                D.rotarDerecha();
+                D.rotateRight();
             }
 
             for(int i = 0; i < D.getMaxRotaciones(); i++){
                 assertTrue(D.mirandoArriba() || D.mirandoAbajo() || D.mirandoIzquierda() || D.mirandoDerecha());
-                D.rotarIzquierda();
+                D.rotateLeft();;
             }
         }
     }
@@ -94,12 +103,12 @@ public class BasePieceTest {
 
             for (int i = 0; i < L.getMaxRotaciones(); i++) {
                 assertTrue(L.mirandoArriba() || L.mirandoDerecha() || L.mirandoAbajo() || L.mirandoIzquierda());
-                L.rotarDerecha();
+                L.rotateRight();
             }
 
             for (int i = 0; i < L.getMaxRotaciones(); i++) {
                 assertTrue(L.mirandoArriba() || L.mirandoDerecha() || L.mirandoAbajo() || L.mirandoIzquierda());
-                L.rotarIzquierda();
+                L.rotateLeft();
             }
         }
     }
