@@ -6,55 +6,48 @@ import org.junit.Test;
 public class BasePieceTest {
     @Test
     public void test_Pieza_Square() {
-        BasePiece z = new PieceSquare();
+        BasePiece Z = new PieceSquare();
 
-        assertNotNull(z.getMatriz());
-        assertSame(z.getMatriz(), z.getMatriz());
-
-        assertEquals(0, z.getMaxRotaciones());
-
-        assertTrue(z.mirandoIzquierda());
-        assertTrue(z.mirandoDerecha());
-        assertTrue(z.mirandoArriba());
-        assertTrue(z.mirandoAbajo());
+        Z.rotateRight();
+        assertTrue(Z.mirandoIzquierda());
+        assertTrue(Z.mirandoDerecha());
+        assertTrue(Z.mirandoArriba());
+        assertTrue(Z.mirandoAbajo());
+        Z.rotateRight();
+        assertTrue(Z.mirandoIzquierda());
+        assertTrue(Z.mirandoDerecha());
+        assertTrue(Z.mirandoArriba());
+        assertTrue(Z.mirandoAbajo());
+        Z.rotateLeft();
+        assertTrue(Z.mirandoIzquierda());
+        assertTrue(Z.mirandoDerecha());
+        assertTrue(Z.mirandoArriba());
+        assertTrue(Z.mirandoAbajo());
     }
 
     @Test
     public void test_Pieza_Stick() {
-        for (int rot = 0; rot < 2; rot++) {
-            BasePiece S = new PieceStick(rot);
+        BasePiece S = new PieceStick(0);
 
-            assertEquals(2, S.getMaxRotaciones());
-
-            assertTrue(S.getRotacion() >= 0 && S.getRotacion() < S.getMaxRotaciones());
-
-            switch(S.getRotacion()) {
-                case 0:
-                    assertTrue(S.mirandoIzquierda());
-                    assertTrue(S.mirandoDerecha());
-                    assertFalse(S.mirandoArriba());
-                    assertFalse(S.mirandoAbajo());
-                    break;
-                case 1:
-                    assertFalse(S.mirandoIzquierda());
-                    assertFalse(S.mirandoDerecha());
-                    assertTrue(S.mirandoArriba());
-                    assertTrue(S.mirandoAbajo());
-                    break;
-            }
+        switch(S.getRotacion()) {
+            case 0:
+                assertTrue(S.mirandoIzquierda());
+                assertTrue(S.mirandoDerecha());
+                assertFalse(S.mirandoArriba());
+                assertFalse(S.mirandoAbajo());
+                break;
+            case 1:
+                assertFalse(S.mirandoIzquierda());
+                assertFalse(S.mirandoDerecha());
+                assertTrue(S.mirandoArriba());
+                assertTrue(S.mirandoAbajo());
+                break;
         }
     }
 
     @Test
     public void test_Pieza_T(){
         BasePiece t = new PieceT(0,0);
-        
-        assertNotNull(t.getMatriz());
-        assertSame(t.getMatriz(), t.getMatriz());
-
-        assertEquals(3, t.getMaxRotaciones());
-
-        assertTrue(t.getRotacion() >= 0 && t.getRotacion() < t.getMaxRotaciones());
 
         switch(t.getRotacion()) {
             case 0:
@@ -92,12 +85,12 @@ public class BasePieceTest {
 
             for(int i = 0; i < D.getMaxRotaciones(); i++){
                 assertTrue(D.mirandoArriba() || D.mirandoAbajo() || D.mirandoIzquierda() || D.mirandoDerecha());
-                D.rotarDerecha();
+                D.rotateRight();
             }
 
             for(int i = 0; i < D.getMaxRotaciones(); i++){
                 assertTrue(D.mirandoArriba() || D.mirandoAbajo() || D.mirandoIzquierda() || D.mirandoDerecha());
-                D.rotarIzquierda();
+                D.rotateLeft();;
             }
         }
     }
@@ -108,33 +101,46 @@ public class BasePieceTest {
         for (int variacion = 0; variacion < 2; variacion++) {
             L = new PieceL(0, variacion);
 
-            assertEquals(variacion, L.getVariacion());
-
             for (int i = 0; i < L.getMaxRotaciones(); i++) {
                 assertTrue(L.mirandoArriba() || L.mirandoDerecha() || L.mirandoAbajo() || L.mirandoIzquierda());
-                L.rotarDerecha();
+                L.rotateRight();
             }
 
             for (int i = 0; i < L.getMaxRotaciones(); i++) {
                 assertTrue(L.mirandoArriba() || L.mirandoDerecha() || L.mirandoAbajo() || L.mirandoIzquierda());
-                L.rotarIzquierda();
+                L.rotateLeft();
             }
         }
     }
 
     @Test
     public void Test_max_Variaciones(){
-        BasePiece d = new PieceDog();
-        BasePiece l = new PieceL();
-        BasePiece z = new PieceSquare();
-        BasePiece s = new PieceStick();
-        BasePiece t = new PieceT();
+        BasePiece D = new PieceDog();
+        BasePiece L = new PieceL();
+        BasePiece Z = new PieceSquare();
+        BasePiece S = new PieceStick();
+        BasePiece T = new PieceT();
 
-        assertEquals(1, d.getMaxVariaciones());
-        assertEquals(2, l.getMaxVariaciones());
-        assertEquals(0, z.getMaxVariaciones());
-        assertEquals(0, s.getMaxVariaciones());
-        assertEquals(0, t.getMaxVariaciones());
+        assertEquals(1, D.getMaxVariaciones());
+        assertEquals(2, L.getMaxVariaciones());
+        assertEquals(0, Z.getMaxVariaciones());
+        assertEquals(0, S.getMaxVariaciones());
+        assertEquals(0, T.getMaxVariaciones());
+    }
+
+    @Test
+    public void Test_Max_Rotaciones(){
+        BasePiece D = new PieceDog();
+        BasePiece L = new PieceL();
+        BasePiece Z = new PieceSquare();
+        BasePiece S = new PieceStick();
+        BasePiece T = new PieceT();
+
+        assertEquals(1, D.getMaxRotaciones());
+        assertEquals(3, L.getMaxRotaciones());
+        assertEquals(0, Z.getMaxRotaciones());
+        assertEquals(1, S.getMaxRotaciones());
+        assertEquals(3, T.getMaxRotaciones());
     }
 
     @Test

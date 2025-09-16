@@ -3,19 +3,26 @@
         "Abajo",
         "Arriba",
         "cada",
+        "Caida",
         "Colicionado",
         "coliciono",
+        "colision",
+        "Colisionado",
         "columnas",
+        "contador",
         "Derecha",
         "ENCAPSULACIÓN",
         "ENCAPSULAMIENTO",
         "estado",
         "filas",
         "imprimir",
+        "Inicio",
         "Izquierda",
+        "juego",
         "Limite",
         "limpiar",
         "Matriz",
+        "Maximas",
         "mirando",
         "mycompany",
         "Obtener",
@@ -25,10 +32,15 @@
         "Rotador",
         "rotar",
         "Tablero",
+        "tetris",
+        "tiempo",
         "variacion",
         "Variacion",
         "Variaciones"
     ],
     "java.configuration.updateBuildConfiguration": "interactive",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
 }

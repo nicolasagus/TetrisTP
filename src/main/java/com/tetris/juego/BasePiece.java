@@ -2,7 +2,7 @@ package com.tetris.juego;
 
 import com.tetris.Interfaces.*;
 
-public abstract class BasePiece implements IRotador, IObtenerMatrizPieza, IGiro{
+public abstract class BasePiece implements IRotator, IObtenerMatrizPieza, IGiro{
     protected int rotacionActual;
     protected int rotacionesMaximas;
     protected int variacionActual;
@@ -61,11 +61,11 @@ public abstract class BasePiece implements IRotador, IObtenerMatrizPieza, IGiro{
     }
     // ACA TERMINA
 
-    public void rotarIzquierda(){
+    public void rotateLeft(){
         rotacionActual = (rotacionActual - 1 + (rotacionesMaximas + 1)) % (rotacionesMaximas + 1);
     }
 
-    public void rotarDerecha(){
+    public void rotateRight(){
         rotacionActual = (rotacionActual + 1) % (rotacionesMaximas + 1);
     }
 
