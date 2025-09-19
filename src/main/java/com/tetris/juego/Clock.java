@@ -22,6 +22,6 @@ public class Clock {
     }
 
     public void tick(){
-        setTicks(getTicks() + 2);
+        setTicks(getTicks() + 1);
     }
 }

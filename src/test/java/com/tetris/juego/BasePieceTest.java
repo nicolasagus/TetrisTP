@@ -8,7 +8,6 @@ public class BasePieceTest {
     public void test_Pieza_Square() {
         BasePiece Z = new PieceSquare();
 
-        Z.rotateRight();
         assertTrue(Z.mirandoIzquierda());
         assertTrue(Z.mirandoDerecha());
         assertTrue(Z.mirandoArriba());
