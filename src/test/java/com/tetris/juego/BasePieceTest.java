@@ -151,4 +151,12 @@ public class BasePieceTest {
         L.colision();
         assertTrue(L.getHaColisionado());
     }
+     @Test
+    public void test_colision2(){
+        BasePiece PieceStick = new PieceStick();
+
+        assertFalse(S.getHaColisionado());
+        S.colision();
+        assertTrue(S.getHaColisionado());
+    }
 }

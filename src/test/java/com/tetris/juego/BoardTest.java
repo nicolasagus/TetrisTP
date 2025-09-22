@@ -34,7 +34,8 @@ public class BoardTest {
                 colision= true;
                 break;
             }
-
+            
+    assertEquals(true, colision);
     }
     }
       @Test
