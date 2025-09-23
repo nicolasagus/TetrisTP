@@ -151,12 +151,54 @@ public class BasePieceTest {
         L.colision();
         assertTrue(L.getHaColisionado());
     }
-     @Test
-    public void test_colision2(){
-        BasePiece PieceStick = new PieceStick();
+    
+    @Test
+    public void test_moveDownActivePiece(){
+        Board board = new Board ();
+        BasePiece pieceStick = new PieceStick();
+        board.addPiece(pieceStick);
 
-        assertFalse(S.getHaColisionado());
-        S.colision();
-        assertTrue(S.getHaColisionado());
+        int posicionYInicial = pieceStick.getY();
+
+        // Intentamos mover hacia abajo 2 veces
+        board.moveDownActivePiece(); // 1
+        board.moveDownActivePiece(); // 2
+
+        int posicionYDespues = pieceStick.getY();
+
+        // Aseguramos que bajó 2 posiciones
+        assertEquals(posicionYInicial + 2, posicionYDespues);
+
     }
+    @Test 
+    public void test_moveDownActivePiece2(){
+        Board board = new Board ();
+        BasePiece pieceStick = new PieceStick(0,18);
+        board.addPiece(pieceStick);
+
+        boolean colision= false;
+        for (int i = 0; i < 5; i++) {
+            if(board.moveDownActivePiece()){
+                colision= true;
+                break;
+            }
+        }
+        assertEquals(true, colision);
+    }
+    @Test 
+    public void test_colision2(){
+        BasePiece PieceStick = new PieceStick (0,0);
+        assertFalse(PieceStick.getHaColisionado());
+        PieceStick.colision();
+        assertTrue(PieceStick.getHaColisionado());
+
+
+    }
+
+
+
+
+    }
+
+ 
 }

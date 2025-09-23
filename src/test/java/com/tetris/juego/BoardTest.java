@@ -49,6 +49,6 @@ public class BoardTest {
         // Solo debe haber una pieza en el tablero
         assertEquals(1, board.getPieces().size());
     }
-
+ 
 
 }
