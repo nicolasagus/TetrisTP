@@ -8,8 +8,8 @@ public class Board {
     private static final char PIEZA_FIJA = 'X';
     private static final char SPACE_CHAR = ' ';
 
-    private ArrayList<String> matrizTablero;
-    private ArrayList<BasePiece> piezasEnTablero;
+    private final ArrayList<String> matrizTablero;
+    private final ArrayList<BasePiece> piezasEnTablero;
     private int contadorLineasCompletas;
 
     public Board() {
@@ -22,6 +22,8 @@ public class Board {
             matrizTablero.add(CELDA_VACIA);
         }
     }
+
+    // Encapsulamiento
 
     public String getMatriz(int indice) {
         return matrizTablero.get(indice);
@@ -58,6 +60,8 @@ public class Board {
     public int getLineCount() {
         return contadorLineasCompletas;
     }
+
+    // Aquí termina el encapsulamiento
 
     public void addPieza() {
         int numeroPieza = (int)(Math.random() * 5);
@@ -154,15 +158,13 @@ public class Board {
         }
     }
 
-    // Movimiento
     public boolean moveDownActivePiece() {
         if (!pieceActiveOnBoard()) return true;
 
         BasePiece piezaActiva = getPiezas(getLastActivePieceIndex());
         if (verificarColisionAbajo()) {
-            piezaActiva.colision();
             fijarPiezaActiva();
-            contarLineCount();
+            LineCount();
             return true;
         }
 
@@ -170,7 +172,7 @@ public class Board {
         borrarPiezaActiva();
         posicion[1]++;
         colocarPiezaEnTablero(posicion[0], posicion[1], piezaActiva.getMatriz());
-        return false;
+        return false; // sigue cayendo
     }
 
     private boolean verificarColisionAbajo() {
@@ -275,8 +277,7 @@ public class Board {
         return true;
     }
 
-    // Contar líneas completas
-    public void contarLineCount() {
+    public void LineCount() {
         for (int y = 19; y >= 0; y--) {
             String fila = getMatriz(y);
             boolean lineaCompleta = true;
@@ -312,5 +313,9 @@ public class Board {
             if (getMatriz(y).contains("x")) return true;
         }
         return false;
+    }
+
+    public boolean piezaActivaFija() {
+        return !pieceActiveOnBoard();
     }
 }

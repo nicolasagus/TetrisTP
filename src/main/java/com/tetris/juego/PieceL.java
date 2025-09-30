@@ -89,11 +89,15 @@ public class PieceL extends BasePiece{
         return todasLasFormas[getRotacion()][getVariacion()];
     }
 
+    @Override
     public boolean mirandoArriba() { return getRotacion()==0; }
 
+    @Override
     public boolean mirandoDerecha() { return getRotacion()==1; }
 
+    @Override
     public boolean mirandoAbajo() { return getRotacion()==2; }
 
+    @Override
     public boolean mirandoIzquierda(){ return getRotacion()==3; }
 }

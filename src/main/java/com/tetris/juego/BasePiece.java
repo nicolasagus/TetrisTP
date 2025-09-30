@@ -1,17 +1,17 @@
 package com.tetris.juego;
 
-import com.tetris.Interfaces.*;
+import com.tetris.Interfaces.IGiro;
+import com.tetris.Interfaces.IObtenerMatrizPieza;
+import com.tetris.Interfaces.IRotator;
 
 public abstract class BasePiece implements IRotator, IObtenerMatrizPieza, IGiro{
     protected int rotacionActual;
     protected int rotacionesMaximas;
     protected int variacionActual;
     protected int variacionesMaximas;
-    protected boolean haColisionado;
 
     public BasePiece() {
         super();
-        setHaColisionado(false);
     }
 
     //ACA HAY ENCAPSULAMIENTO
@@ -26,7 +26,7 @@ public abstract class BasePiece implements IRotator, IObtenerMatrizPieza, IGiro{
     @Override
     public String[] getMatriz(){
         return null;
-    } // se define por pieza
+    }
 
     protected void setMaxRotaciones(int maxRotaciones){
         this.rotacionesMaximas = maxRotaciones - 1;
@@ -34,14 +34,6 @@ public abstract class BasePiece implements IRotator, IObtenerMatrizPieza, IGiro{
 
     public int getMaxRotaciones(){
         return rotacionesMaximas;
-    }
-
-    protected void setHaColisionado(boolean colision){
-        this.haColisionado = colision;
-    }
-
-    public boolean getHaColisionado(){
-        return haColisionado;
     }
 
     protected void setVariacion(int variacion){
@@ -61,15 +53,13 @@ public abstract class BasePiece implements IRotator, IObtenerMatrizPieza, IGiro{
     }
     // ACA TERMINA
 
+    @Override
     public void rotateLeft(){
         rotacionActual = (rotacionActual - 1 + (rotacionesMaximas + 1)) % (rotacionesMaximas + 1);
     }
 
+    @Override
     public void rotateRight(){
         rotacionActual = (rotacionActual + 1) % (rotacionesMaximas + 1);
-    }
-
-    public void colision() {
-        setHaColisionado(true);;
     }
 }
