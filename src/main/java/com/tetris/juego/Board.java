@@ -317,4 +317,9 @@ public class Board {
             System.out.println(getMatrix(i));
         }
     }
+
+    public int getWidth() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWidth'");
+    }
 }

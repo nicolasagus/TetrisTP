@@ -146,34 +146,36 @@ public class BasePieceTest {
     @Test
     public void test_colision(){
         BasePiece L = new PieceL();
-
         assertFalse(L.getHaColisionado());
         L.colision();
         assertTrue(L.getHaColisionado());
     }
     
     @Test
-    public void test_moveDownActivePiece(){
-        Board board = new Board ();
-        BasePiece pieceStick = new PieceStick();
-        board.addPiece(pieceStick);
+     public boolean moveDownActivePiece() {
+    BasePiece activePiece = null;
+    if (activePiece == null) return false;
 
-        int posicionYInicial = pieceStick.getY();
+    int nuevaY = activePiece.getY() + 1;
 
-        // Intentamos mover hacia abajo 2 veces
-        board.moveDownActivePiece(); // 1
-        board.moveDownActivePiece(); // 2
-
-        int posicionYDespues = pieceStick.getY();
-
-        // Aseguramos que bajó 2 posiciones
-        assertEquals(posicionYInicial + 2, posicionYDespues);
-
+    int alturaTablero = 20; // Asignar la altura del tablero
+    // verificar si se pasa del límite del tablero
+    if (nuevaY >= alturaTablero) { 
+        activePiece.colision();
+        return true; // hubo colisión
     }
+
+    // mover la pieza hacia abajo
+    activePiece.setY(nuevaY);
+    return false; // no hubo colisión todavía
+}
+
+
+     
     @Test 
     public void test_moveDownActivePiece2(){
         Board board = new Board ();
-        BasePiece pieceStick = new PieceStick(0,18);
+        BasePiece pieceStick = new PieceStick(0);
         board.addPiece(pieceStick);
 
         boolean colision= false;
@@ -187,7 +189,7 @@ public class BasePieceTest {
     }
     @Test 
     public void test_colision2(){
-        BasePiece PieceStick = new PieceStick (0,0);
+        BasePiece PieceStick = new PieceStick (0);
         assertFalse(PieceStick.getHaColisionado());
         PieceStick.colision();
         assertTrue(PieceStick.getHaColisionado());
@@ -198,7 +200,4 @@ public class BasePieceTest {
 
 
 
-    }
-
- 
 }

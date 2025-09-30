@@ -72,4 +72,10 @@ public abstract class BasePiece implements IRotator, IObtenerMatrizPieza, IGiro{
     public void colision() {
         setHaColisionado(true);;
     }
+
+    protected abstract int getY();
+
+    protected abstract void setY(int nuevaY);
+
+    protected abstract void moveDown();
 }

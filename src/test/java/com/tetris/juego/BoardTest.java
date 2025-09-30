@@ -32,9 +32,7 @@ public class BoardTest {
         for (int i = 0; i < 19; i++) {
             if(board.moveDownActivePiece()){
                 colision= true;
-                break;
-            }
-            
+                break;  }    
     assertEquals(true, colision);
     }
     }
@@ -43,12 +41,85 @@ public class BoardTest {
         Board board = new Board();
         BasePiece pieceL = new PieceL(0,0);
         board.addPiece(pieceL);
-        // Intentar agregar otra pieza mientras hay una activa
+        
         BasePiece otraPieza = new PieceL(0,0);
         board.addPiece(otraPieza);
-        // Solo debe haber una pieza en el tablero
+        
         assertEquals(1, board.getPieces().size());
     }
- 
+public boolean moveDownActivePiece() {
+    Board activePiece = moveDownActivePiece();
+    int boardHeight = getHeight();
+    BasePiece[][] grid = getGrid();
+    int boardWidth = getWidth();
 
+    if (activePiece==null) return false;
+
+    int newRow = activePiece.getRow() + 1;
+
+    // Reviso todas las coordenadas que ocupa la pieza
+    for (Point cell : activePiece.getCells()) {
+        int futureRow = cell.y + 1;
+        int futureCol = cell.x;
+
+        // Si toca el fondo
+        if (futureRow >= boardHeight) {
+            return false;
+        }
+
+        // Si choca con otra pieza ya fijada
+        if (grid[futureRow][futureCol] != null) {
+            return false;
+        }
+    }
+
+    // Si no choca, actualizo posición
+    activePiece.moveDown();
+    return true;
+}
+private int getHeight() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getHeight'");
+}
+private BasePiece[][] getGrid() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getGrid'");
+}
+
+    @Test
+public void testCompletarLinea() {
+    Board board = new Board();
+    
+    // Llenar la fila 19
+    for (int col = 0; col < board.getWidth(); col++) {
+        BasePiece piece = new PieceSquare(col, 19);
+        board.addPiece(piece);
+        piece.colision(); // fijar la pieza
+    }
+
+    int filasAntes = board.getFilledRowsCount();
+    board.checkAndClearFullLines();
+    int filasDespues = board.getFilledRowsCount();
+
+    assertEquals(filasAntes - 1, filasDespues);
+}
+
+ 
+@Test
+public void testcompletarLinea() {
+    Board board = new Board();
+    // Llenar la fila 19
+    for (int col = 0; col < board.getWidth(); col++) {
+        BasePiece piece = new PieceSquare(col, 19);
+        board.addPiece(piece);
+        piece.colision(); // Fijar la pieza
+    }
+
+    int filasAntes = board.getFilledRowsCount();
+    board.checkAndClearFullLines();
+    int filasDespues = board.getFilledRowsCount();
+
+    assertEquals(filasAntes - 1, filasDespues);
+
+}
 }
