@@ -165,5 +165,5 @@ public class BasePieceTest {
         };
 
         assertNull(pieza.getMatriz());
-    }
+} 
 }

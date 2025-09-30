@@ -318,4 +318,9 @@ public class Board {
     public boolean piezaActivaFija() {
         return !pieceActiveOnBoard();
     }
+
+    public int getWidth() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWidth'");
+    }
 }
