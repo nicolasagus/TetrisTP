@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TetrisTest {
     @Test
-    public void testSquareDesdeArribaHastaElFondo() {
+    public void testCaidaLibreCuadradoConTick() {
         Tetris tetris = new Tetris(5);
         tetris.start();
 
