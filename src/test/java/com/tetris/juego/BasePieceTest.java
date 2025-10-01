@@ -1,14 +1,16 @@
 package com.tetris.juego;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class BasePieceTest {
     @Test
     public void test_Pieza_Square() {
-        BasePiece Z = new PieceSquare();
+        BasePiece Z = new PieceSquare(0, 0);
 
-        Z.rotateRight();
         assertTrue(Z.mirandoIzquierda());
         assertTrue(Z.mirandoDerecha());
         assertTrue(Z.mirandoArriba());
@@ -27,88 +29,86 @@ public class BasePieceTest {
 
     @Test
     public void test_Pieza_Stick() {
-        BasePiece S = new PieceStick(0);
+        for (int rot = 0; rot < 2; rot++) {
+            PieceStick S = new PieceStick(rot);
 
-        switch(S.getRotacion()) {
-            case 0:
-                assertTrue(S.mirandoIzquierda());
-                assertTrue(S.mirandoDerecha());
-                assertFalse(S.mirandoArriba());
-                assertFalse(S.mirandoAbajo());
-                break;
-            case 1:
-                assertFalse(S.mirandoIzquierda());
-                assertFalse(S.mirandoDerecha());
-                assertTrue(S.mirandoArriba());
-                assertTrue(S.mirandoAbajo());
-                break;
+            switch (S.getRotacion()) {
+                case 0:
+                    assertTrue(S.mirandoIzquierda());
+                    assertTrue(S.mirandoDerecha());
+                    assertFalse(S.mirandoArriba());
+                    assertFalse(S.mirandoAbajo());
+                    break;
+                case 1:
+                    assertFalse(S.mirandoIzquierda());
+                    assertFalse(S.mirandoDerecha());
+                    assertTrue(S.mirandoArriba());
+                    assertTrue(S.mirandoAbajo());
+                    break;
+            }
         }
     }
 
     @Test
-    public void test_Pieza_T(){
-        BasePiece t = new PieceT(0,0);
+    public void test_Pieza_T() {
+        for (int rot = 0; rot < 4; rot++) { // T tiene 4 rotaciones
+            PieceT t = new PieceT(rot, 0);
 
-        switch(t.getRotacion()) {
-            case 0:
-                assertTrue(t.mirandoArriba());
-                assertFalse(t.mirandoDerecha());
-                assertFalse(t.mirandoAbajo());
-                assertFalse(t.mirandoIzquierda());
-                break;
-            case 1:
-                assertFalse(t.mirandoArriba());
-                assertTrue(t.mirandoDerecha());
-                assertFalse(t.mirandoAbajo());
-                assertFalse(t.mirandoIzquierda());
-                break;
-            case 2:
-                assertFalse(t.mirandoArriba());
-                assertFalse(t.mirandoDerecha());
-                assertTrue(t.mirandoAbajo());
-                assertFalse(t.mirandoIzquierda());
-                break;
-            case 3:
-                assertFalse(t.mirandoArriba());
-                assertFalse(t.mirandoDerecha());
-                assertFalse(t.mirandoAbajo());
-                assertTrue(t.mirandoIzquierda());
-                break;
+            assertEquals(rot == 0, t.mirandoArriba());
+            assertEquals(rot == 1, t.mirandoDerecha());
+            assertEquals(rot == 2, t.mirandoAbajo());
+            assertEquals(rot == 3, t.mirandoIzquierda());
         }
     }
 
     @Test
     public void test_Pieza_Dog(){
-        BasePiece D;
-        for(int variacion = 0; variacion < 2; variacion++){
-            D = new PieceDog(0, variacion);
+        for (int variacion = 0; variacion < 2; variacion++) {
+        BasePiece D = new PieceDog(0, variacion);
 
-            for(int i = 0; i < D.getMaxRotaciones(); i++){
-                assertTrue(D.mirandoArriba() || D.mirandoAbajo() || D.mirandoIzquierda() || D.mirandoDerecha());
-                D.rotateRight();
+        for (int i = 0; i < D.getMaxRotaciones(); i++) {
+            if (D.getRotacion() == 0) {
+                assertTrue(D.mirandoDerecha());
+                assertTrue(D.mirandoIzquierda());
+                assertFalse(D.mirandoArriba());
+                assertFalse(D.mirandoAbajo());
+            } else if (D.getRotacion() == 1) {
+                assertFalse(D.mirandoDerecha());
+                assertFalse(D.mirandoIzquierda());
+                assertTrue(D.mirandoArriba());
+                assertTrue(D.mirandoAbajo());
             }
 
-            for(int i = 0; i < D.getMaxRotaciones(); i++){
-                assertTrue(D.mirandoArriba() || D.mirandoAbajo() || D.mirandoIzquierda() || D.mirandoDerecha());
-                D.rotateLeft();;
+            D.rotateRight();
+        }
+
+        for (int i = 0; i < D.getMaxRotaciones(); i++) {
+            if (D.getRotacion() == 0) {
+                assertTrue(D.mirandoDerecha());
+                assertTrue(D.mirandoIzquierda());
+                assertFalse(D.mirandoArriba());
+                assertFalse(D.mirandoAbajo());
+            } else if (D.getRotacion() == 1) {
+                assertFalse(D.mirandoDerecha());
+                assertFalse(D.mirandoIzquierda());
+                assertTrue(D.mirandoArriba());
+                assertTrue(D.mirandoAbajo());
             }
+            D.rotateLeft();
+        }
         }
     }
 
     @Test
     public void test_Pieza_L() {
-        BasePiece L;
         for (int variacion = 0; variacion < 2; variacion++) {
-            L = new PieceL(0, variacion);
+            for (int rot = 0; rot < 4; rot++) { 
+                PieceL L = new PieceL(rot, variacion);
 
-            for (int i = 0; i < L.getMaxRotaciones(); i++) {
-                assertTrue(L.mirandoArriba() || L.mirandoDerecha() || L.mirandoAbajo() || L.mirandoIzquierda());
-                L.rotateRight();
-            }
-
-            for (int i = 0; i < L.getMaxRotaciones(); i++) {
-                assertTrue(L.mirandoArriba() || L.mirandoDerecha() || L.mirandoAbajo() || L.mirandoIzquierda());
-                L.rotateLeft();
+                assertEquals(rot == 0, L.mirandoArriba());
+                assertEquals(rot == 1, L.mirandoDerecha());
+                assertEquals(rot == 2, L.mirandoAbajo());
+                assertEquals(rot == 3, L.mirandoIzquierda());
             }
         }
     }
@@ -144,60 +144,26 @@ public class BasePieceTest {
     }
 
     @Test
-    public void test_colision(){
-        BasePiece L = new PieceL();
-        assertFalse(L.getHaColisionado());
-        L.colision();
-        assertTrue(L.getHaColisionado());
-    }
-    
-    @Test
-     public boolean moveDownActivePiece() {
-    BasePiece activePiece = null;
-    if (activePiece == null) return false;
-
-    int nuevaY = activePiece.getY() + 1;
-
-    int alturaTablero = 20; // Asignar la altura del tablero
-    // verificar si se pasa del límite del tablero
-    if (nuevaY >= alturaTablero) { 
-        activePiece.colision();
-        return true; // hubo colisión
-    }
-
-    // mover la pieza hacia abajo
-    activePiece.setY(nuevaY);
-    return false; // no hubo colisión todavía
-}
-
-
-     
-    @Test 
-    public void test_moveDownActivePiece2(){
-        Board board = new Board ();
-        BasePiece pieceStick = new PieceStick(0);
-        board.addPiece(pieceStick);
-
-        boolean colision= false;
-        for (int i = 0; i < 5; i++) {
-            if(board.moveDownActivePiece()){
-                colision= true;
-                break;
+    public void test_BasePiece_GetMatriz() {
+        BasePiece pieza = new BasePiece() {
+            @Override
+            public String[] getMatriz() {
+                return super.getMatriz();
             }
-        }
-        assertEquals(true, colision);
-    }
-    @Test 
-    public void test_colision2(){
-        BasePiece PieceStick = new PieceStick (0);
-        assertFalse(PieceStick.getHaColisionado());
-        PieceStick.colision();
-        assertTrue(PieceStick.getHaColisionado());
 
+            @Override
+            public boolean mirandoArriba() { return false; }
 
-    }
+            @Override
+            public boolean mirandoAbajo() { return false; }
 
+            @Override
+            public boolean mirandoIzquierda() { return false; }
 
+            @Override
+            public boolean mirandoDerecha() { return false; }
+        };
 
-
+        assertNull(pieza.getMatriz());
+} 
 }

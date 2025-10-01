@@ -9,6 +9,9 @@
         "colision",
         "Colisionado",
         "columnas",
+
+        "Completa",
+
         "completar",
         "contador",
         "Derecha",
@@ -16,7 +19,9 @@
         "ENCAPSULAMIENTO",
         "estado",
         "filas",
+        "Gana",
         "imprimir",
+        "Iniciado",
         "Inicio",
         "Izquierda",
         "juego",
@@ -29,6 +34,7 @@
         "mycompany",
         "Obtener",
         "Pieza",
+        "posicio",
         "Rotacion",
         "Rotaciones",
         "Rotador",
